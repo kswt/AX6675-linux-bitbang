@@ -2,9 +2,12 @@
 #include <stdio.h>
 #include <unistd.h>
 
-// GPIO chip and pin labels
-// Find it at /sys/kernel/debug/gpio
-// or /sys/class/gpio/<gpiochip_id>/label
+/*
+GPIO chip and pin labels
+Find it at /sys/kernel/debug/gpio
+or /sys/class/gpio/<gpiochip_id>/label
+*/
+
 #define GPIOCHIP_LABEL "pinctrl-bcm2835"
 #define CE0_N_LABEL "SPI_CE0_N"
 #define SCLK_LABEL "SPI_SCLK"
@@ -56,9 +59,9 @@ int main(){
 		else
 		{
 			temperature = (chip_output>>3)*100/4;
-			printf("\r                             ");// Clear line
+			printf("\r                             ");// Clear previous data
 			printf("\r%.2f", (float)temperature/100);
-		};
+		}
 		fflush(stdout);
 	}
 	gpiod_chip_close(gpiodchip0);
